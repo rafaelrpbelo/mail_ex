@@ -19,7 +19,7 @@ defmodule MailEx.Mixfile do
   def application do
     [mod: {MailEx, []},
      applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :postgrex, :bamboo]]
+                    :phoenix_ecto, :postgrex, :bamboo, :swoosh, :phoenix_swoosh]]
   end
 
   # Specifies which paths to compile per environment.
@@ -38,7 +38,10 @@ defmodule MailEx.Mixfile do
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:gettext, "~> 0.11"},
      {:cowboy, "~> 1.0"},
-     {:bamboo, "~> 0.8"}]
+     {:bamboo, "~> 0.8"},
+     {:swoosh, "~> 0.6.0"},
+     {:gen_smtp, "~> 0.11.0"},
+     {:phoenix_swoosh, "~> 0.2"}]
   end
 
   # Aliases are shortcuts or tasks specific to the current project.

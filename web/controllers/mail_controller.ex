@@ -1,7 +1,7 @@
 defmodule MailEx.MailController do
   use MailEx.Web, :controller
   
-  alias MailEx.{Mail, Mailer}
+  alias MailEx.{Mail, Mailer, SwooshMailer, UserEmail}
 
   def new(conn, _params) do
     changeset = Mail.changeset(%Mail{}, %{})
@@ -9,9 +9,17 @@ defmodule MailEx.MailController do
   end
 
   def create(conn, %{"mail" => mail_params}) do
-    mail_params
-    |> Email.send_contact_email
-    |> Mailer.deliver_later
+    # Send email with Bamboo
+    #mail_params
+    #|> Email.send_contact_email
+    #|> Mailer.deliver_later
+
+    # Send email with Swoosh
+    Task.async fn ->
+      mail_params
+      |> UserEmail.send_email
+      |> SwooshMailer.deliver
+    end
 
     conn
     |> put_flash(:info, "Email sent!")
