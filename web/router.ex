@@ -16,11 +16,8 @@ defmodule MailEx.Router do
   scope "/", MailEx do
     pipe_through :browser # Use the default browser stack
 
-    get "/", PageController, :index
-  end
+    get "/", MailController, :new
 
-  # Other scopes may use custom stacks.
-  # scope "/api", MailEx do
-  #   pipe_through :api
-  # end
+    resources "/mails", MailController, only: [:new, :create]
+  end
 end

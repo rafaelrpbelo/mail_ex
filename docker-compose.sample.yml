@@ -12,6 +12,7 @@ services:
     build: .
     environment:
       - DB_HOST=db
+      - SENDGRID_APIKEY=your-send-grid-app-key
     volumes:
       - .:/app
     working_dir: /app

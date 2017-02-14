@@ -1,0 +1,3 @@
+<p>You got a message by contact form:</p>
+<br />
+<p><%= @body %></p>

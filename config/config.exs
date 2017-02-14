@@ -17,6 +17,10 @@ config :mail_ex, MailEx.Endpoint,
   pubsub: [name: MailEx.PubSub,
            adapter: Phoenix.PubSub.PG2]
 
+config :mail_ex, MailEx.Mailer,
+  adapter: Bamboo.SendgridAdapter,
+  api_key: System.get_env("SENDGRID_APIKEY")
+
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
